@@ -1,0 +1,33 @@
+#offline {
+  position: absolute;
+  visibility: visible;
+  background-color: #201c2b;
+  top: 0%;
+  width: 100%; 
+  height: 100%;
+}
+
+#map {
+  visibility: hidden;
+  width: 100%; 
+  height: 100%
+}
+
+.offline-content {
+  position: relative;
+  top: 20%;
+}
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10vw
+}
+
+.offline-text {
+  font-size:5vw;
+  color: #e5e3e8;
+  display: block;
+  text-align:center;
+}
