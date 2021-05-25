@@ -7,7 +7,7 @@ import L from 'leaflet'
 const RealtimeIRL = require('@rtirl/api/lib/index.js')
 
 var mapStyleId = 'mapbox/streets-v11'
-var mapboxAccessToken = 'pk.eyJ1IjoiampqampqampqampqampqampqaiIsImEiOiJja290MThwMzIwNjNkMndwaHR5djlhYThqIn0.zULjRWtxmVmaWe-FDobI-A'
+var mapboxAccessToken = 'pk.eyJ1Ijoia2V2bW8zMTQiLCJhIjoiY2twM2t5ZXI4MTlmZjJwcHFmaXdpemU4dSJ9.PIVrH3gyzAVmqhBj1Oafog'
 var streamSource = "twitch"
 var twitch = window.Twitch.ext
 
@@ -17,7 +17,6 @@ twitch.onContext(function (context) {
 
 twitch.onAuthorized(
   function (auth) {
-    console.log(RealtimeIRL)
     var parts = auth.token.split(".")
     var payload = JSON.parse(window.atob(parts[1]))
     var streamerId = payload.channel_id
@@ -45,8 +44,6 @@ function panToLocation(map, marker, location) {
   var mapDiv = document.getElementById('map')
 
   if (location !== null) {
-    console.log('online')
-    console.log(location)
     offlineDiv.style.visibility = 'hidden'
     mapDiv.style.visibility = 'visible'
     map.panTo([location.latitude, location.longitude], {
@@ -55,7 +52,6 @@ function panToLocation(map, marker, location) {
     marker.setLatLng([location.latitude, location.longitude], { animate: true, duration: 1.5 })
   }
   else {
-    console.log('offline')
     //Streamer is not pushing data to RealtimeIRL
     offlineDiv.style.visibility = 'visible'
     mapDiv.style.visibility = 'hidden'
