@@ -13,18 +13,18 @@ module.exports = (_env, argv) => {
       outputHtml: "video_component.html",
       build: true
     },
+    Config: {
+      path: "./src/config.js",
+      template: "./public/config.html",
+      outputHtml: "config.html",
+      build: true
+    },
   }
 
   let entry = {}
 
   // edit webpack plugins here!
   let plugins = [
-    new HtmlWebpackPlugin({
-      inject: false,
-      template: "./public/config.html",
-      filename: "config.html",
-      build: true
-    })
   ]
 
   for (name in entryPoints) {
