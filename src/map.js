@@ -1,14 +1,15 @@
 require('leaflet/dist/images/marker-icon-2x.png')
 require('leaflet/dist/images/marker-shadow.png')
 require('leaflet/dist/images/marker-icon.png')
-require("leaflet/dist/leaflet.css")
-require("./style.css");
-import L from 'leaflet'
-const RealtimeIRL = require('@rtirl/api/lib/index.js')
+require('leaflet/dist/leaflet.css')
+require('./style.css');
+import L from 'leaflet/dist/leaflet'
+import * as RealtimeIRL from '@rtirl/api/.'
+import firebase from 'firebase/app'
 
 var mapStyleId = 'mapbox/streets-v11'
 var mapboxAccessToken = 'pk.eyJ1Ijoia2V2bW8zMTQiLCJhIjoiY2twM2t5ZXI4MTlmZjJwcHFmaXdpemU4dSJ9.PIVrH3gyzAVmqhBj1Oafog'
-var streamSource = "twitch"
+var streamSource = 'twitch'
 var twitch = window.Twitch.ext
 
 twitch.onContext(function (context) {
@@ -17,7 +18,8 @@ twitch.onContext(function (context) {
 
 twitch.onAuthorized(
   function (auth) {
-    var parts = auth.token.split(".")
+    firebase.database.INTERNAL.forceWebSockets()
+    var parts = auth.token.split('.')
     var payload = JSON.parse(window.atob(parts[1]))
     var streamerId = payload.channel_id
     var map = L.map('map').setView([51.505, -0.09], 13)
@@ -31,7 +33,7 @@ twitch.onAuthorized(
 
     map.removeControl(map.zoomControl)
     map.scrollWheelZoom.disable()
-    map.doubleClickZoom.disable(); 
+    map.doubleClickZoom.disable();
     map.dragging.disable()
 
     var marker = L.marker([0, 0]).addTo(map)

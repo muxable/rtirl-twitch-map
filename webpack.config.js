@@ -44,7 +44,11 @@ module.exports = (_env, argv) => {
   let config = {
     entry,
     optimization: {
-      minimize: false // neccessary to pass Twitch's review process
+      minimize: false, // neccessary to pass Twitch's review process
+      mergeDuplicateChunks: true,
+      splitChunks: {
+        chunks: 'all',
+      },
     },
     module: {
       rules: [
@@ -56,7 +60,8 @@ module.exports = (_env, argv) => {
           test: /\.(jpe?g|png|gif|svg)$/i,
           loader: "file-loader",
           options: {
-            name: "img/[name].[ext]"
+            name: "img/[name].[ext]",
+            esModule: false
           }
         }
       ]
@@ -64,7 +69,8 @@ module.exports = (_env, argv) => {
     resolve: { extensions: ['*', '.js'] },
     output: {
       filename: "[name].bundle.js",
-      path: bundlePath
+      path: bundlePath,
+      clean: true
     },
     plugins
   }
