@@ -2,7 +2,7 @@
   "name": "rtirl-twitch-map",
   "version": "0.0.1",
   "description": "Twitch extension that allows viewers to see the streamers location",
-  "main": "index.js",
+  "homepage": "https://github.com/juaoose/rtirl-twitch-map#readme",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development"
@@ -14,7 +14,9 @@
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
+    "standard": "^16.0.3",
     "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.1.2",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"

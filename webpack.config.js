@@ -1,54 +1,60 @@
-
-const path = require("path")
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
-// defines where the bundle file will live
-const bundlePath = path.resolve(__dirname, "dist/")
+const bundlePath = path.resolve(__dirname, 'dist/')
 
 module.exports = (_env, argv) => {
-  let entryPoints = {
-    VideoComponent: {
-      path: "./src/map.js",
-      template: "./public/video_component.html",
-      outputHtml: "video_component.html",
+  const entryPoints = {
+    video: {
+      path: './src/panel/map.js',
+      template: './src/panel/index.html',
+      outputHtml: 'video_component.html',
       build: true
     },
-    Config: {
-      path: "./src/config.js",
-      template: "./public/config.html",
-      outputHtml: "config.html",
+    config: {
+      path: './src/config/config.js',
+      template: './src/config/index.html',
+      outputHtml: 'config.html',
       build: true
-    },
+    }
   }
 
-  let entry = {}
+  const entry = {}
 
-  // edit webpack plugins here!
-  let plugins = [
+  const plugins = [
   ]
 
-  for (name in entryPoints) {
-    if (entryPoints[name].build) {
-      entry[name] = entryPoints[name].path
+  for (const entryPoint in entryPoints) {
+    if (entryPoints[entryPoint].build) {
+      entry[entryPoint] = entryPoints[entryPoint].path
       if (argv.mode === 'production') {
         plugins.push(new HtmlWebpackPlugin({
           inject: true,
-          chunks: [name],
-          template: entryPoints[name].template,
-          filename: entryPoints[name].outputHtml
+          chunks: [entryPoint],
+          template: entryPoints[entryPoint].template,
+          filename: entryPoints[entryPoint].outputHtml
         }))
       }
     }
   }
 
-  let config = {
+  const config = {
     entry,
     optimization: {
-      minimize: false, // neccessary to pass Twitch's review process
+      minimize: true,
+      minimizer: [new TerserPlugin({
+        terserOptions: {
+          parse: {},
+          compress: {},
+          mangle: false,
+          module: false
+        }
+      })],
       mergeDuplicateChunks: true,
       splitChunks: {
-        chunks: 'all',
-      },
+        chunks: 'all'
+      }
     },
     module: {
       rules: [
@@ -58,9 +64,9 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "img/[name].[ext]",
+            name: 'img/[name].[ext]',
             esModule: false
           }
         }
@@ -68,7 +74,7 @@ module.exports = (_env, argv) => {
     },
     resolve: { extensions: ['*', '.js'] },
     output: {
-      filename: "[name].bundle.js",
+      filename: '[name].bundle.js',
       path: bundlePath,
       clean: true
     },
@@ -85,5 +91,5 @@ module.exports = (_env, argv) => {
     }
   }
 
-  return config;
+  return config
 }

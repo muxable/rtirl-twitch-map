@@ -30,4 +30,3 @@ To successfully use this extension, the Twitch streamer must follow these steps:
 5. Download the [RealtimeIRL Beacon app](https://play.google.com/store/apps/details?id=com.rtirl.beacon).
 6. Provide the Push Key in the app settings.
 
-
