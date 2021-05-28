@@ -10,29 +10,25 @@ import firebase from 'firebase/app'
 
 const twitch = window.Twitch.ext
 
-twitch.onAuthorized(
-  function (auth) {
-    if (firebase) {
-      firebase.database.INTERNAL.forceWebSockets()
-    }
-    const parts = auth.token.split('.')
-    const payload = JSON.parse(window.atob(parts[1]))
-    const streamerId = payload.channel_id
-    const map = L.map('map').setView([0, 0], 13)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map)
+// Set up map
+const map = createMap()
+const marker = L.marker([0, 0]).addTo(map)
 
-    map.removeControl(map.zoomControl)
-    map.scrollWheelZoom.disable()
-    map.doubleClickZoom.disable()
-    map.dragging.disable()
+function createMap () {
+  const myMap = L.map('map').setView([0, 0], 13)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(myMap)
 
-    const marker = L.marker([0, 0]).addTo(map)
-    RealtimeIRL.forStreamer('twitch', streamerId).addLocationListener(location => panToLocation(map, marker, location))
-  })
+  myMap.removeControl(myMap.zoomControl)
+  myMap.scrollWheelZoom.disable()
+  myMap.doubleClickZoom.disable()
+  myMap.dragging.disable()
 
-function panToLocation (map, marker, location) {
+  return myMap
+}
+
+function panToLocation (location) {
   const offlineDiv = document.getElementById('offline')
   const mapDiv = document.getElementById('map')
 
@@ -49,3 +45,16 @@ function panToLocation (map, marker, location) {
     mapDiv.style.visibility = 'hidden'
   }
 }
+
+function handleAuth (auth) {
+  if (firebase) {
+    firebase.database.INTERNAL.forceWebSockets()
+  }
+  const parts = auth.token.split('.')
+  const payload = JSON.parse(window.atob(parts[1]))
+  const streamerId = payload.channel_id
+  RealtimeIRL.forStreamer('twitch', streamerId).addLocationListener(location => panToLocation(location))
+}
+
+// Twitch events
+twitch.onAuthorized(handleAuth)
