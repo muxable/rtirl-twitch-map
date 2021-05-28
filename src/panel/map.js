@@ -12,7 +12,8 @@ const twitch = window.Twitch.ext
 
 // Set up map
 const map = createMap()
-const marker = L.marker([0, 0]).addTo(map)
+const marker = createMarker()
+let focusStreamer = true
 
 function createMap () {
   const myMap = L.map('map').setView([0, 0], 13)
@@ -21,11 +22,23 @@ function createMap () {
   }).addTo(myMap)
 
   myMap.removeControl(myMap.zoomControl)
-  myMap.scrollWheelZoom.disable()
-  myMap.doubleClickZoom.disable()
-  myMap.dragging.disable()
+
+  myMap.addEventListener('drag', () => {
+    focusStreamer = false
+  })
 
   return myMap
+}
+
+function createMarker () {
+  return L.marker([0, 0]).on('click', focusMarker).addTo(map)
+}
+
+function focusMarker (event) {
+  focusStreamer = true
+  map.flyTo(event.latlng, 13, {
+    duration: 1.5
+  })
 }
 
 function panToLocation (location) {
@@ -35,9 +48,11 @@ function panToLocation (location) {
   if (location !== null) {
     offlineDiv.style.visibility = 'hidden'
     mapDiv.style.visibility = 'visible'
-    map.panTo([location.latitude, location.longitude], {
-      duration: 1.5
-    })
+    if (focusStreamer) {
+      map.panTo([location.latitude, location.longitude], {
+        duration: 1.5
+      })
+    }
     marker.setLatLng([location.latitude, location.longitude], { animate: true, duration: 1.5 })
   } else {
     // Streamer is not pushing data to RealtimeIRL

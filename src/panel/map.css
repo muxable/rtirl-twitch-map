@@ -1,3 +1,8 @@
+body {
+  background: #201c2b;
+  user-select: none;
+}
+
 #offline {
   position: absolute;
   visibility: visible;
@@ -8,9 +13,10 @@
 }
 
 #map {
+  position: relative;
   visibility: hidden;
   width: 100%; 
-  height: 100%
+  height: 100% 
 }
 
 #map * {
