@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const ZipPlugin = require('zip-webpack-plugin')
 
 const bundlePath = path.resolve(__dirname, 'dist/')
 
@@ -23,6 +24,7 @@ module.exports = (_env, argv) => {
   const entry = {}
 
   const plugins = [
+    new ZipPlugin({ filename: 'twitch_extension.zip' })
   ]
 
   for (const entryPoint in entryPoints) {

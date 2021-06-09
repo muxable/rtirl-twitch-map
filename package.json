@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@rtirl/api": "^1.0.6",
-    "leaflet": "^1.7.1"
+    "leaflet": "^1.7.1",
+    "zip-webpack-plugin": "^4.0.1"
   }
 }
