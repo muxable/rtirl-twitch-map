@@ -22,5 +22,5 @@ In order to make this extension work for your viewers you will need to use Realt
 
 ## Map attribution
 - [Leaflet.](https://leafletjs.com/)
-- [OpenStreetMaps.](www.openstreetmap.org/copyright)
+- [OpenStreetMaps.](https://www.openstreetmap.org/copyright)
 
