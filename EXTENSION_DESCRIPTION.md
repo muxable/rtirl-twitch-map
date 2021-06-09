@@ -17,3 +17,6 @@ Viewer Engagement
 
 ### Category
 Just Chatting, Travel & Outdoors
+
+### Privacy Policy
+[RealtimeIRL's privacy policy](https://rtirl.com/privacy-policy/)
