@@ -15,7 +15,7 @@ In order to make this extension work for your viewers you will need to use Realt
 1. Install the extension.
 2. Select the component in which the extension will be shown.
 
-## Sharing your location
+### Sharing your location
 1. From the RealtimeIRL application, press the "Play" button, which will start logging your location. Once this is done your viewers will be able to see your location using the extension (your location will also be visible from the RealtimeIRL website)
 
 **Notes:** Your location will not be displayed on RealtimeIRL's website or the extension once your stop sharing your location using the app or once your twitch stream is stopped.

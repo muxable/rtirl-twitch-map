@@ -18,9 +18,10 @@ let focusStreamer = true
 function createMap () {
   const myMap = L.map('map').setView([0, 0], 13)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy;OpenStreetMap contributors'
   }).addTo(myMap)
 
+  myMap.attributionControl.setPrefix('Leaflet')
   myMap.removeControl(myMap.zoomControl)
 
   myMap.addEventListener('drag', () => {
