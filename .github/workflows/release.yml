@@ -1,6 +1,9 @@
 name: create-release
 
-on: workflow_dispatch
+on: 
+  push:
+    tags:
+    - '*'
 
 jobs:
   build:
@@ -13,8 +16,8 @@ jobs:
       - name: Build
         run: npm run build
       - name: Release
-        uses: softprops/action-gh-release@v0.1.5
+        uses: ncipollo/release-action@v1
         with:
-          files: dist/twitch_extension.zip
+          artifacts: dist/twitch_extension.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
