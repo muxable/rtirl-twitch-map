@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "css-loader": "^5.2.6",
+    "cz-conventional-changelog": "^3.3.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "standard": "^16.0.3",
@@ -24,5 +25,10 @@
     "@rtirl/api": "^1.0.6",
     "leaflet": "^1.7.1",
     "zip-webpack-plugin": "^4.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
