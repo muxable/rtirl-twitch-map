@@ -8,7 +8,7 @@ In order to make this extension work for your viewers you will need to use Realt
 ### Prerequisites
 1. Register to [RealtimeIRL](https://rtirl.com/) using your twitch.tv account.
 2. Retrieve your "Push Key", which is displayed when you click on "Configure".
-3. Download the RealtimeIRL mobile application ([Android](https://play.google.com/store/apps/details?id=com.rtirl.beacon), iOS coming soon)
+3. Download the RealtimeIRL mobile application ([Android](https://play.google.com/store/apps/details?id=com.rtirl.beacon), [iOS](https://apps.apple.com/us/app/realtimeirl/id1558493719))
 4. Open the mobile application, tap on "RealtimeIRL" title, tap on "RealtimeIRL push key" and enter your "Push Key".
 
 ### Extension Installation
