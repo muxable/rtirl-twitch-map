@@ -10,7 +10,7 @@ You can learn more about RealtimeIRL at:
 https://rtirl.com/
 
 Map Attributions can be found at:
-https://github.com/juaoose/rtirl-twitch-map#map-attribution
+https://github.com/muxable/rtirl-twitch-map#map-attribution
 
 ### Viewer Summary
 IRL Map allows you to follow your favorite IRL streamer on the map.
