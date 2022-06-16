@@ -1,12 +1,12 @@
 import 'leaflet/dist/images/marker-icon-2x.png'
-import 'leaflet/dist/images/marker-shadow.png'
 import 'leaflet/dist/images/marker-icon.png'
+import 'leaflet/dist/images/marker-shadow.png'
 import 'leaflet/dist/leaflet.css'
 import './map.css'
 
-import L from 'leaflet/dist/leaflet'
-import * as RealtimeIRL from '@rtirl/api'
+import { forStreamer } from '@rtirl/api'
 import firebase from 'firebase/app'
+import L from 'leaflet/dist/leaflet'
 
 const twitch = window.Twitch.ext
 
@@ -54,7 +54,10 @@ function panToLocation (location) {
         duration: 1.5
       })
     }
-    marker.setLatLng([location.latitude, location.longitude], { animate: true, duration: 1.5 })
+    marker.setLatLng([location.latitude, location.longitude], {
+      animate: true,
+      duration: 1.5
+    })
   } else {
     // Streamer is not pushing data to RealtimeIRL
     offlineDiv.style.visibility = 'visible'
@@ -69,7 +72,9 @@ function handleAuth (auth) {
   const parts = auth.token.split('.')
   const payload = JSON.parse(window.atob(parts[1]))
   const streamerId = payload.channel_id
-  RealtimeIRL.forStreamer('twitch', streamerId).addLocationListener(location => panToLocation(location))
+  forStreamer('twitch', streamerId).addLocationListener((location) =>
+    panToLocation(location)
+  )
 }
 
 // Twitch events
