@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import './map.css'
 
 import L from 'leaflet/dist/leaflet'
-import * as RealtimeIRL from '@rtirl/api/.'
+import * as RealtimeIRL from '@rtirl/api'
 import firebase from 'firebase/app'
 
 const twitch = window.Twitch.ext
