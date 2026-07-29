@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import './map.css'
 
 import { forStreamer } from '@rtirl/api'
-import firebase from 'firebase/app'
+import { forceWebSockets } from 'firebase/database'
 import L from 'leaflet/dist/leaflet'
 
 const twitch = window.Twitch.ext
@@ -66,9 +66,7 @@ function panToLocation (location) {
 }
 
 function handleAuth (auth) {
-  if (firebase) {
-    firebase.database.INTERNAL.forceWebSockets()
-  }
+  forceWebSockets()
   const parts = auth.token.split('.')
   const payload = JSON.parse(window.atob(parts[1]))
   const streamerId = payload.channel_id
