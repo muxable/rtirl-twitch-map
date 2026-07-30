@@ -1,6 +1,6 @@
 {
   "name": "rtirl-twitch-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Twitch extension that allows viewers to see the streamers location",
   "homepage": "https://github.com/muxable/rtirl-twitch-map#readme",
   "scripts": {
@@ -18,7 +18,7 @@
     "standard": "^16.0.3",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.2",
-    "webpack": "^5.37.1",
+    "webpack": "^5.109.2",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
