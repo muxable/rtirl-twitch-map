@@ -23,7 +23,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@rtirl/api": "^1.2.4",
+    "@rtirl/api": "^1.2.5",
     "firebase": "^10.12.2",
     "leaflet": "^1.7.1",
     "zip-webpack-plugin": "^4.0.1"
